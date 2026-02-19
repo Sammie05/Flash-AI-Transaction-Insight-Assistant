@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flash AI Transaction Insight Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            background-color:  #f9f9f9;
+        }
+
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        .description {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+        }
+
+        .spinner {
+            display: none;
+            margin: 15px auto;
+            width: 30px;
+            height: 30px;
+            border: 4px solid #ccc;
+            border-top: 4px solid #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f2f2f2;
+            border-left: 4px solid #444;
+        }
+
+        .metric {
+            font-size: 0.9em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function showSpinner() {
+            const btn = document.getElementById("analyzeBtn");
+            const spinner = document.getElementById("spinner");
+
+            btn.disabled = true;
+            btn.innerText = "Analyzing...";
+            spinner.style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+
+<h2>Flash AI Transaction Insight Assistant</h2>
+<p class="description">
+    Analyze Bitcoin transactions and receive AI-powered insights about fees, speed, and network efficiency.
+</p>
+
+<form method="post" action="/analyze" onsubmit="showSpinner()">
+    <label>Amount (sats)</label>
+    <input type="number" name="amount_sats" min="1" required placeholder="e.g. 25000">
+
+    <label>Fee (sats)</label>
+    <input type="number" name="fee_sats" min="0" required placeholder="e.g. 1200">
+
+    <label>Confirmation Time (minutes)</label>
+    <input type="number" name="confirmation_time_minutes" min="0" required placeholder="e.g. 45">
+
+    <label>Network</label>
+    <select name="network" required>
+        <option value="bitcoin">Bitcoin</option>
+        <option value="lightning">Lightning</option>
+    </select>
+
+    <button id="analyzeBtn" type="submit">Analyze Transaction</button>
+
+    <!--  Spinner element -->
+    <div id="spinner" class="spinner"></div>
+</form>
+
+{% if insight %}
+<div class="result">
+    <h3>🔍 AI Insight</h3>
+
+    <div class="metric">
+        <strong>Fee Rate:</strong> {{ fee_rate }}%
+    </div>
+
+    <p>{{ insight }}</p>
+</div>
+{% endif %}
+
+<footer>
+    MVP Demo Project · AI-Ready Backend · Built with FastAPI
+</footer>
+
+</body>
+</html>
