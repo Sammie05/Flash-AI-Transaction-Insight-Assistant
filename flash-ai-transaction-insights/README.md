@@ -9,9 +9,17 @@ What This Project Does
 - Suggests better payment options (e.g. Lightning for small or urgent payments)
 - Includes a simple web UI with validation and loading state
 
-ech Stack
+Tech Stack
 
 - Python
 - FastAPI
 - Jinja2 (server-rendered HTML)
 - HTML / CSS / JavaScript (minimal UI)
+
+- install dependencies
+pip install -r requirements.txt
+
+# run the app
+uvicorn main:app --reload
+
+ http://127.0.0.1:8000
