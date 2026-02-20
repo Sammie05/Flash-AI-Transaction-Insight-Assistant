@@ -9,9 +9,19 @@ What This Project Does
 - Suggests better payment options (e.g. Lightning for small or urgent payments)
 - Includes a simple web UI with validation and loading state
 
-ech Stack
+Tech Stack
 
 - Python
 - FastAPI
 - Jinja2 (server-rendered HTML)
 - HTML / CSS / JavaScript (minimal UI)
+
+ How to Run Locally
+
+```bash
+# create virtual environment
+python -m venv venv
+source venv/bin/activate 
+
+ run the app
+uvicorn main:app --reload
